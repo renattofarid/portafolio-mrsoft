@@ -189,24 +189,26 @@ export default function Tabs() {
 
   return (
     <>
-      <div className="flex justify-center mb-8 md:mb-16 px-4">
-        <div className="flex bg-blackone/10 border border-border rounded-xl p-1 shadow-sm w-full max-w-xs md:w-auto">
-          <Button
-            onClick={() => handleTabChange("nosotros")}
-            className={`px-6 py-2 rounded-xl text-sm font-medium transition-all duration-300 font-poppins`}
-            variant={activeTab === "nosotros" ? "black" : "ghost"}
-          >
-            Nosotros
-          </Button>
-          <Button
-            onClick={() => handleTabChange("galeria")}
-            className={`px-6 py-2 rounded-xl text-sm font-medium transition-all duration-300 font-poppins`}
-            variant={activeTab === "galeria" ? "black" : "ghost"}
-          >
-            Galería
-          </Button>
-        </div>
-      </div>
+<div className="flex justify-center mb-8 md:mb-16 px-4">
+  <div className="flex w-full max-w-sm md:w-auto bg-blackone/10 border border-border rounded-2xl p-1 shadow-sm">
+    <Button
+      onClick={() => handleTabChange("nosotros")}
+      className={`flex-1 md:flex-none px-3 py-2 md:px-6 md:py-2 rounded-xl text-xs md:text-sm font-medium font-poppins whitespace-nowrap text-center transition-all duration-300 focus-visible:ring-0 focus-visible:ring-offset-0`}
+      variant={activeTab === "nosotros" ? "black" : "ghost"}
+    >
+      Nosotros
+    </Button>
+
+    <Button
+      onClick={() => handleTabChange("galeria")}
+      className={`flex-1 md:flex-none px-3 py-2 md:px-6 md:py-2 rounded-xl text-xs md:text-sm font-medium font-poppins whitespace-nowrap text-center transition-all duration-300 focus-visible:ring-0 focus-visible:ring-offset-0`}
+      variant={activeTab === "galeria" ? "black" : "ghost"}
+    >
+      Galería
+    </Button>
+  </div>
+</div>
+
 
       {/* Content based on active tab */}
       {activeTab === "nosotros" ? (

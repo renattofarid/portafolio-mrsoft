@@ -18,7 +18,10 @@ export default function Footer() {
     return () => ctx.revert();
   }, []);
 
-  const text = "DISEÑO DE PORTALES WEB ❄️ OPTIMIZACIÓN DE PROCESOS DE NEGOCIO";
+  // const text = "DISEÑO DE PORTALES WEB ❄️ OPTIMIZACIÓN DE PROCESOS DE NEGOCIO";
+
+  const textLeft = "DISEÑO DE PORTALES WEB";
+const textRight = "OPTIMIZACIÓN DE PROCESOS DE NEGOCIO";
 
   return (
     <footer className="bg-[#EAEAEA] dark:bg-[#2d2d2d] py-6 mt-16 transition-colors duration-300">
@@ -108,11 +111,17 @@ export default function Footer() {
         <div className="py-8 overflow-hidden">
           <div ref={marqueeRef} className="relative w-full py-4">
             <div className="flex w-max whitespace-nowrap marquee-text text-foreground text-lg md:text-5xl font-bold">
-              {[...Array(4)].map((_, i) => (
-                <p key={i} className="px-8">
-                  {text}
-                </p>
-              ))}
+    {[...Array(6)].map((_, i) => (
+      <div key={i} className="flex items-center px-8">
+        <span>{textLeft}</span>
+        <img
+          src="/Star.png"
+          alt="*"
+          className="mx-6 h-5 w-5 md:h-8 md:w-8 object-contain"
+        />
+        <span>{textRight}</span>
+      </div>
+    ))}
             </div>
           </div>
 

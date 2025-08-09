@@ -2,6 +2,9 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown, Search } from "lucide-react";
@@ -24,16 +27,16 @@ export default function Header() {
               <ChevronDown className="w-4 h-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-[#2E2E2E] dark:bg-[#1a1a1a] text-white border-none p-2 rounded-lg shadow-lg before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-transparent">
-              <DropdownMenuItem className="focus:text-terciary focus:bg-[#333]">
+              <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
                 Desarrollo a medida
               </DropdownMenuItem>
-              <DropdownMenuItem className="focus:text-terciary focus:bg-[#333]">
+              <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
                 Páginas web
               </DropdownMenuItem>
-              <DropdownMenuItem className="focus:text-terciary focus:bg-[#333]">
+              <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
                 E-commerce
               </DropdownMenuItem>
-              <DropdownMenuItem className="focus:text-terciary focus:bg-[#333]">
+              <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
                 Otros
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -52,23 +55,55 @@ export default function Header() {
           <ThemeSwitch />
         </div>
 
-        {/* Mobile menu button */}
-        <div className="md:hidden">
-          <button className="text-foreground hover:text-secondary transition-colors">
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
+        {/* Mobile menu button with options */}
+        <div className="md:hidden relative">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="text-foreground hover:text-secondary transition-colors">
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </button>
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent className="bg-[#2E2E2E] dark:bg-[#1a1a1a] text-white border-none p-2 rounded-lg shadow-lg">
+              {/* Submenú Servicios */}
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444]">
+                  Servicios
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent className="bg-[#2E2E2E] dark:bg-[#1a1a1a] text-white border-none p-2 rounded-lg shadow-lg">
+                  <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
+                    Desarrollo a medida
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
+                    Páginas web
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
+                    E-commerce
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
+                    Otros
+                  </DropdownMenuItem>
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
+
+              {/* Otro ítem simple */}
+              <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] mt-2">
+                Productos
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </header>
