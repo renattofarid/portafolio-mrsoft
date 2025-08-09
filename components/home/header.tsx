@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown, Search } from "lucide-react";
 import { ThemeSwitch } from "../theme-switch";
+import SearchWithBlur from "./SearchWithBlur";
 export default function Header() {
   return (
     <header className="px-6 py-4 transition-colors duration-300">
@@ -51,7 +52,7 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center space-x-4">
-          <Search className="w-5 h-5 text-foreground hover:text-secondary transition-colors cursor-pointer" />
+          <SearchWithBlur />
           <ThemeSwitch />
         </div>
 
