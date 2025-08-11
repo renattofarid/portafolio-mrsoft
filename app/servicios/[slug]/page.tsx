@@ -36,6 +36,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           problem={frontmatter.problem}
           solution={frontmatter.solution}
           sector={frontmatter.sector}
+          technologies={frontmatter.technologies || []}
         />
         <Gallery images={frontmatter.gallery} />
 

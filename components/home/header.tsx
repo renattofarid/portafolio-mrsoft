@@ -11,42 +11,52 @@ import {
 import { ChevronDown } from "lucide-react";
 import { ThemeSwitch } from "../theme-switch";
 import SearchWithBlur from "./SearchWithBlur";
+import Link from "next/link";
 export default function Header() {
   return (
     <header className="px-6 py-4 transition-colors duration-300">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <div className="font-black tracking-wide flex flex-col text-xl text-foreground">
+        <Link
+          href="/"
+          className="font-black tracking-wide flex flex-col text-xl text-foreground"
+        >
           <p> PORTFOLIO </p>
           <p className="-mt-2">
             MR<span className="text-secondary">.</span>SOFT{" "}
           </p>
-        </div>
+        </Link>
 
         <nav className="hidden md:flex items-center space-x-8">
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center space-x-1 text-foreground  transition-colors font-poppins">
+            <DropdownMenuTrigger className="flex items-center space-x-1 text-foreground cursor-pointer transition-colors font-poppins">
               <span>Servicios</span>
               <ChevronDown className="w-4 h-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-[#2E2E2E] dark:bg-[#1a1a1a] text-white border-none p-2 rounded-lg shadow-lg before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-transparent">
-              <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
-                Desarrollo a medida
-              </DropdownMenuItem>
-              <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
-                Páginas web
-              </DropdownMenuItem>
-              <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
-                E-commerce
-              </DropdownMenuItem>
-              <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
+              <Link href="/servicios">
+                <DropdownMenuItem className="cursor-pointer focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
+                  Desarrollo a medida
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/servicios">
+                <DropdownMenuItem className="cursor-pointer focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
+                  Páginas web
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/servicios">
+                <DropdownMenuItem className="cursor-pointer focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
+                  E-commerce
+                </DropdownMenuItem>
+              </Link>
+              {/* <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
                 Otros
-              </DropdownMenuItem>
+              </DropdownMenuItem> */}
             </DropdownMenuContent>
           </DropdownMenu>
 
           <a
             href="#"
-            className="text-foreground hover:text-secondary transition-colors font-poppins"
+            className="text-foreground hover:text-secondary transition-colors font-poppins cursor-pointer"
           >
             Productos
           </a>
