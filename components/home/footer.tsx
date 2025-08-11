@@ -1,5 +1,5 @@
+"use client";
 import gsap from "gsap";
-import { Facebook, Instagram, Youtube } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 export default function Footer() {
