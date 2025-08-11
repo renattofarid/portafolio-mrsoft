@@ -24,8 +24,10 @@ export function ProjectInfo(props: ProjectInfoProps) {
       <div className="w-full">
         {infoItems.map(({ label, key }) => (
           <div className="mb-4" key={key}>
-            <h3 className="font-bold text-2xl">{label}</h3>
-            <p className="">{props[key as keyof ProjectInfoProps]}</p>
+            <h3 className="font-bold text-lg md:text-2xl">{label}</h3>
+            <p className="text-xs md:text-base">
+              {props[key as keyof ProjectInfoProps]}
+            </p>
           </div>
         ))}
       </div>
@@ -34,19 +36,19 @@ export function ProjectInfo(props: ProjectInfoProps) {
           <div className="bg-secondary h-3 w-1 rounded-xl"></div>
           <h2 className="text-lg font-semibold">Tecnologías Usadas</h2>
         </div>
-        <div className="flex gap-8 bg-white dark:bg-gray-800 p-4 rounded-lg">
+        <div className="flex gap-4 md:gap-8 bg-white dark:bg-gray-800 p-4 rounded-lg">
           {props.technologies.map((tech, index) => (
             <div
               key={index}
-              className="flex flex-col justify-center items-center gap-2 p-2 size-28 rounded-lg bg-background hover:bg-blackthree/20 transition-colors"
+              className="flex flex-col justify-center items-center gap-2 p-2 size-20 md:size-28 rounded-lg bg-background hover:bg-blackthree/20 transition-colors"
             >
-              <span className="text-sm font-medium text-gray-700">
+              <span className="text-xs md:text-sm font-medium text-gray-700">
                 {technologies[tech]?.title || tech}
               </span>
               <img
                 src={technologies[tech]?.image}
                 alt={tech}
-                className="size-14"
+                className="size-10 md:size-14"
               />
             </div>
           ))}

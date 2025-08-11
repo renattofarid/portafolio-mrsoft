@@ -19,7 +19,8 @@ export function Hero({
   description: string;
   images: string[];
 }) {
-  const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
+  const autoplay = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
+  // Puedes pasarle opciones como { forceWheelAxis: 'x', target: ... }
 
   return (
     <section className="w-full flex flex-col items-center justify-center gap-6">
@@ -30,12 +31,12 @@ export function Hero({
 
       <div className="relative w-full">
         <Carousel
-          plugins={[plugin.current]}
+          plugins={[autoplay.current]} // ⬅️ Aquí ambos plugins
           className="w-full"
-          onMouseEnter={plugin.current.stop}
-          onMouseLeave={plugin.current.reset}
+          onMouseEnter={autoplay.current.stop}
+          onMouseLeave={autoplay.current.reset}
           opts={{
-            loop: true,
+            loop: false,
           }}
         >
           <CarouselContent className="w-full ml-0">
@@ -52,7 +53,6 @@ export function Hero({
             ))}
           </CarouselContent>
 
-          {/* Botones centrados verticalmente */}
           <CarouselPrevious className="absolute top-1/2 -translate-y-1/2 left-2 z-10" />
           <CarouselNext className="absolute top-1/2 -translate-y-1/2 right-2 z-10" />
         </Carousel>
