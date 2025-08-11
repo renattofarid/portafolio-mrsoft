@@ -2,7 +2,7 @@ import Footer from "@/components/home/footer";
 import Header from "@/components/home/header";
 import { Button } from "@/components/ui/button";
 
-export default function ProjectPage() {
+export default function Page() {
   return (
     <div className="min-h-screen bg-background transition-colors duration-300">
       {/* Header */}

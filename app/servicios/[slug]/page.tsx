@@ -17,8 +17,14 @@ export async function generateStaticParams() {
     .map((f) => ({ slug: f.replace(/\.mdx$/, "") }));
 }
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const filePath = path.join(CONTENT_DIR, `${params.slug}.mdx`);
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
+  const filePath = path.join(CONTENT_DIR, `${slug}.mdx`);
   const file = fs.readFileSync(filePath, "utf-8");
   const { data: frontmatter, content } = matter(file);
 
