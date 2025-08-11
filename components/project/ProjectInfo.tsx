@@ -42,7 +42,7 @@ export function ProjectInfo(props: ProjectInfoProps) {
               key={index}
               className="flex flex-col justify-center items-center gap-2 p-2 size-20 md:size-28 rounded-lg bg-background hover:bg-blackthree/20 transition-colors"
             >
-              <span className="text-xs md:text-sm font-medium text-gray-700">
+              <span className="text-xs md:text-sm font-medium text-gray-700 dark:text-gray-300">
                 {technologies[tech]?.title || tech}
               </span>
               <img
