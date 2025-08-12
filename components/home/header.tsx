@@ -55,7 +55,7 @@ export default function Header() {
           </DropdownMenu>
 
           <a
-            href="#"
+            href="/productos"
             className="text-foreground hover:text-secondary transition-colors font-poppins cursor-pointer"
           >
             Productos
