@@ -3,6 +3,7 @@ import Header from "@/components/home/header";
 import Projects from "@/components/project/Projects";
 import { Services } from "@/components/services/Services";
 import { getProjects } from "@/lib/projects";
+import { Suspense } from "react";
 
 export default async function Page() {
   const projects = await getProjects();
@@ -24,7 +25,15 @@ export default async function Page() {
           </p>
         </div>
 
-        <Services />
+        <Suspense
+          fallback={
+            <div className="relative mt-10 h-fit overflow-hidden bg-black text-white p-4 py-8 md:p-8 rounded-4xl flex flex-col md:min-h-[720px]">
+              
+            </div>
+          }
+        >
+          <Services />
+        </Suspense>
 
         <Projects projects={projects} />
       </main>

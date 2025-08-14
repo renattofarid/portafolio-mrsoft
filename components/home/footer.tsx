@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import { FacebookIcon } from "../icons/FacebookIcon";
 import { InstagramIcon } from "../icons/InstagramIcon";
 import { YoutubeIcon } from "../icons/YoutubeIcon";
-import { TiktokIcon } from "../icons/TIktokIcon";
+import { TiktokIcon } from "../icons/Tiktok";
 
 export default function Footer() {
   const marqueeRef = useRef<HTMLDivElement>(null);
