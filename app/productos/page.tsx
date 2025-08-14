@@ -1,7 +1,6 @@
 import Footer from "@/components/home/footer";
 import Header from "@/components/home/header";
 import Products from "@/components/products/Productos";
-import { Services } from "@/components/services/Services";
 import { getProducts } from "@/lib/products";
 
 export default async function Page() {

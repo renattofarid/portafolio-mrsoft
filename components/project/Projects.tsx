@@ -74,7 +74,7 @@ export default function Projects({ projects }: Props) {
             </div>
           </div>
 
-          <div className="col-span-2">
+          <div className="col-span-2 rounded-xl overflow-hidden">
             <ProjectGallery data={projectSelected} />
           </div>
         </div>

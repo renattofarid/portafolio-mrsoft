@@ -1,5 +1,4 @@
 import { Service } from "@/lib/service.interface";
-import { Button } from "../ui/button";
 
 export const ItemInformation = ({
   service,
@@ -24,7 +23,7 @@ export const ItemInformation = ({
 
       <h1 className="text-2xl md:text-6xl font-semibold z-10">{title}</h1>
 
-      <p className="w-full md:w-2/3 z-10 mt-4 text-sm md:text-normal">
+      <p className="w-full md:w-2/3 z-10 mt-2 md:mt-4 text-sm md:text-normal">
         {description}
       </p>
 
@@ -34,9 +33,9 @@ export const ItemInformation = ({
           <h2 className="text-lg font-semibold">Beneficios</h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-4 mt-2">
           {benefits.map((benefit, index) => (
-            <div key={index} className="p-4 rounded-lg bg-background">
+            <div key={index} className="p-2 md:p-4 rounded-lg bg-background">
               <h3 className="font-semibold text-black dark:text-white text-sm md:text-base">
                 {benefit.title}
               </h3>
@@ -47,9 +46,9 @@ export const ItemInformation = ({
           ))}
         </div>
 
-        <Button className="mt-6 px-10 bg-secondary text-white hover:bg-secondary/80">
+        {/* <Button className="mt-6 px-10 bg-secondary text-white hover:bg-secondary/80">
           Conocer más
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

@@ -5,8 +5,7 @@ import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import { ProductMarkdown } from "@/lib/products";
-import Iphone15Pro from "../magicui/iphone-15-pro";
-import {  ItemProductInformation } from "./ItemProductInformation";
+import { ItemProductInformation } from "./ItemProductInformation";
 import ItemProduct from "./ItemProduct";
 
 interface Props {
@@ -36,18 +35,24 @@ export default function Products({ products }: Props) {
         opts={{ loop: true }}
       >
         <CarouselContent className="w-full h-full p-2">
-          {products.map((Product, index) => (
+          {products.map((product, index) => (
             <CarouselItem
               key={index}
               className="w-fit md:w-full h-full basis-auto md:basis-1/6"
             >
-              <ItemProduct onClick={setproductselected} Product={Product} />
+              <ItemProduct
+                onClick={setproductselected}
+                product={product}
+                productSelected={productselected?.slug === product.slug}
+              />
             </CarouselItem>
           ))}
         </CarouselContent>
       </Carousel>
 
-      {productselected && <ItemProductInformation product={productselected.frontmatter} />}
+      {productselected && (
+        <ItemProductInformation product={productselected.frontmatter} />
+      )}
     </div>
   );
 }

@@ -33,17 +33,32 @@ export default function Header() {
               <ChevronDown className="w-4 h-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-[#2E2E2E] dark:bg-[#1a1a1a] text-white border-none p-2 rounded-lg shadow-lg before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-transparent">
-              <Link href="/servicios">
+              <Link
+                href={{
+                  pathname: "/servicios",
+                  query: { s: "desarrollo" },
+                }}
+              >
                 <DropdownMenuItem className="cursor-pointer focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
                   Desarrollo a medida
                 </DropdownMenuItem>
               </Link>
-              <Link href="/servicios">
+              <Link
+                href={{
+                  pathname: "/servicios",
+                  query: { s: "paginas" },
+                }}
+              >
                 <DropdownMenuItem className="cursor-pointer focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
                   Páginas web
                 </DropdownMenuItem>
               </Link>
-              <Link href="/servicios">
+              <Link
+                href={{
+                  pathname: "/servicios",
+                  query: { s: "ecommerce" },
+                }}
+              >
                 <DropdownMenuItem className="cursor-pointer focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
                   E-commerce
                 </DropdownMenuItem>
@@ -93,19 +108,34 @@ export default function Header() {
                     Servicios
                   </DropdownMenuSubTrigger>
                   <DropdownMenuSubContent className="bg-[#2E2E2E] dark:bg-[#1a1a1a] text-white border-none p-2 rounded-lg shadow-lg">
-                    <Link href="/servicios?s=desarrollo">
+                    <Link
+                      href={{
+                        pathname: "/servicios",
+                        query: { s: "desarrollo" },
+                      }}
+                    >
                       <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
                         Desarrollo a medida
                       </DropdownMenuItem>
                     </Link>
 
-                    <Link href="/servicios?s=paginas">
+                    <Link
+                      href={{
+                        pathname: "/servicios",
+                        query: { s: "paginas" },
+                      }}
+                    >
                       <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
                         Páginas web
                       </DropdownMenuItem>
                     </Link>
 
-                    <Link href="/servicios?s=ecommerce">
+                    <Link
+                      href={{
+                        pathname: "/servicios",
+                        query: { s: "ecommerce" },
+                      }}
+                    >
                       <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
                         E-commerce
                       </DropdownMenuItem>

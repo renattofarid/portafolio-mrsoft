@@ -3,7 +3,6 @@ import Header from "@/components/home/header";
 import Projects from "@/components/project/Projects";
 import { Services } from "@/components/services/Services";
 import { getProjects } from "@/lib/projects";
-import { useParams } from "next/navigation";
 
 export default async function Page() {
   const projects = await getProjects();
