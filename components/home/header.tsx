@@ -93,29 +93,29 @@ export default function Header() {
                     Servicios
                   </DropdownMenuSubTrigger>
                   <DropdownMenuSubContent className="bg-[#2E2E2E] dark:bg-[#1a1a1a] text-white border-none p-2 rounded-lg shadow-lg">
-                    <Link href="/servicios">
+                    <Link href="/servicios?s=desarrollo">
                       <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
                         Desarrollo a medida
                       </DropdownMenuItem>
                     </Link>
 
-                    <Link href="/servicios">
+                    <Link href="/servicios?s=paginas">
                       <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
                         Páginas web
                       </DropdownMenuItem>
                     </Link>
 
-                    <Link href="/servicios">
+                    <Link href="/servicios?s=ecommerce">
                       <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
                         E-commerce
                       </DropdownMenuItem>
                     </Link>
 
-                    <Link href="/servicios">
+                    {/* <Link href="/servicios?s=otros">
                       <DropdownMenuItem className="focus:text-terciary focus:bg-[#333] dark:hover:bg-[#444] dark:focus:text-white">
                         Otros
                       </DropdownMenuItem>
-                    </Link>
+                    </Link> */}
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>
 

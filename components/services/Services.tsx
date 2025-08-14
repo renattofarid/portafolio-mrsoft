@@ -1,22 +1,24 @@
 "use client";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import { useRef } from "react";
 import { services } from "@/lib/services";
 import { ItemInformation } from "./ItemInformation";
+import { useSearchParams } from "next/navigation";
 
 export const Services = () => {
-  const autoplay = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
+  const { get } = useSearchParams();
+  const service = get("s");
+
+  const currentService = services.find((s) => s.slug === service);
+
   const wheel = useRef(WheelGesturesPlugin({ forceWheelAxis: "y" }));
 
   return (
     <div className="relative w-full h-full md:min-h-[750px]">
       <Carousel
-        plugins={[autoplay.current, wheel.current]}
-        className="w-full h-full"
-        onMouseEnter={() => autoplay.current.stop()}
-        onMouseLeave={() => autoplay.current.play()}
+        plugins={[wheel.current]}
+        className="w-full h-full rounded-4xl my-6 overflow-hidden"
         orientation="vertical"
         opts={{ loop: false }}
       >
