@@ -2,6 +2,7 @@ import { Service } from "./service.interface";
 
 export const services: Service[] = [
   {
+    slug: "desarrollo",
     title: "Desarrollo de software a medida",
     description:
       "Creamos soluciones de software únicas, diseñadas específicamente para las necesidades de tu negocio.",
@@ -32,6 +33,7 @@ export const services: Service[] = [
     ],
   },
   {
+    slug: "paginas",
     title: "Páginas web",
     description:
       "Creamos páginas web a medida que combinan diseño atractivo, funcionalidad y rendimiento. Ya sea que necesites un sitio informativo, o una landing page profesional, te ayudamos a destacar en el mundo digital.",
@@ -55,6 +57,7 @@ export const services: Service[] = [
     ],
   },
   {
+    slug: "ecommerce",
     title: "E-commerce",
     description:
       "Lleva tu negocio al mundo digital con una tienda virtual personalizada. Diseñamos ecommerce atractivos, seguros y fáciles de usar para que puedas vender tus productos o servicios en línea las 24 horas del día.",

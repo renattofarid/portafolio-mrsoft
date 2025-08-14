@@ -6,9 +6,9 @@ import Autoplay from "embla-carousel-autoplay";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import { ProjectMarkdown } from "@/lib/projects";
 import ItemProject from "./ItemProject";
-import { Project } from "@/lib/project.interface";
 import { ProjectGallery } from "./ProjectGallery";
 import { Safari } from "../safari";
+import gsap from "gsap";
 
 interface Props {
   projects: ProjectMarkdown[];
@@ -21,11 +21,29 @@ export default function Projects({ projects }: Props) {
   const [projectSelected, setProjectSelected] =
     useState<ProjectMarkdown | null>(null);
 
+  const detailRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (!projectSelected && projects.length > 0) {
       setProjectSelected(projects[0]);
     }
-  }, []);
+  }, [projects, projectSelected]);
+
+  // Animación de aparición sin alterar altura
+  useEffect(() => {
+    if (detailRef.current) {
+      gsap.fromTo(
+        detailRef.current,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          ease: "power2.out",
+        }
+      );
+    }
+  }, [projectSelected]);
 
   return (
     <div>
@@ -42,37 +60,47 @@ export default function Projects({ projects }: Props) {
               key={index}
               className="w-fit md:w-full h-full basis-auto md:basis-1/6"
             >
-              <ItemProject onClick={setProjectSelected} project={project} />
+              <ItemProject
+                projectSelected={projectSelected?.slug === project.slug}
+                onClick={setProjectSelected}
+                project={project}
+              />
             </CarouselItem>
           ))}
         </CarouselContent>
       </Carousel>
 
-      {projectSelected && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-6">
-          <div className="col-span-1 bg-gray-200 dark:bg-[#2d2d2d] rounded-xl p-4 flex flex-col gap-6">
-            <div className="w-full h-full flex justify-center items-center">
-              {/* 1203 x 753 */}
-              <Safari
-                url={projectSelected.frontmatter.client}
-                className="size-full"
-                imageSrc={projectSelected.frontmatter.figma}
-              />
-            </div>
-            <div className="bg-white/75 dark:bg-black/60 rounded-2xl h-fit p-4 backdrop-blur-md">
-              <p className="text-base md:text-lg font-bold">Del diseño al desarrollo</p>
-              <p className="text-xs md:text-sm">
-                Creamos un diseño visual completo, pensado en la experiencia del
-                usuario, la estructura y la identidad de tu marca.
-              </p>
-            </div>
-          </div>
+      {/* Contenedor de altura fija para que el layout no se mueva */}
+      <div className="min-h-[500px]">
+        {projectSelected && (
+          <div ref={detailRef}>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-6 mt-4">
+              <div className="col-span-1 bg-gray-200 dark:bg-[#2d2d2d] rounded-xl p-4 flex flex-col gap-6">
+                <div className="w-full h-full flex justify-center items-center">
+                  <Safari
+                    url={projectSelected.frontmatter.client}
+                    className="size-full"
+                    imageSrc={projectSelected.frontmatter.figma}
+                  />
+                </div>
+                <div className="bg-white/75 dark:bg-black/60 rounded-2xl h-fit p-4 backdrop-blur-md">
+                  <p className="text-base md:text-lg font-bold">
+                    Del diseño al desarrollo
+                  </p>
+                  <p className="text-xs md:text-sm">
+                    Creamos un diseño visual completo, pensado en la experiencia
+                    del usuario, la estructura y la identidad de tu marca.
+                  </p>
+                </div>
+              </div>
 
-          <div className="col-span-2">
-            <ProjectGallery data={projectSelected} />
+              <div className="col-span-2 rounded-xl overflow-hidden">
+                <ProjectGallery data={projectSelected} />
+              </div>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

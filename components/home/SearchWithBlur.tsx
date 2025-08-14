@@ -1,3 +1,4 @@
+
 import {
   Dialog,
   DialogContent,
@@ -26,7 +27,7 @@ export default function SearchWithBlur() {
         </DialogHeader>
 
         <Input
-          className="focus-visible:border-secondary focus-visible:ring-secondary !ring-[1px] border border-secondary !bg-white"
+          className="text-black focus-visible:border-secondary focus-visible:ring-secondary !ring-[1px] border border-secondary !bg-white"
           placeholder="Buscar..."
         />
         <Search className="absolute top-2 right-3 w-5 h-5 text-secondary pointer-events-none" />
