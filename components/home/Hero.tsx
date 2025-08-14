@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import Link from "next/link";
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
@@ -73,13 +74,15 @@ export default function Hero() {
             Desarrollamos software a medida y productos tecnológicos para
             empresas de todos los tamaños.
           </p>
-          <Button
-            variant="secondary"
-            size="lg"
-            className="font-normal rounded-xl"
-          >
-            Contáctanos
-          </Button>
+          <Link href="/contacto">
+            <Button
+              variant="secondary"
+              size="lg"
+              className="font-normal rounded-xl"
+            >
+              Contáctanos
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

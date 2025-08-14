@@ -86,7 +86,7 @@ export default function CommentForm() {
       telefono: values.telefono,
       correo: values.correo,
       mensaje: values.mensaje,
-      producto: "Mr. Soft",
+      producto: "Portafolio de Mr. Soft",
     })
       .then((response) => {
         console.log("Respuesta del servidor:", response);
@@ -100,17 +100,18 @@ export default function CommentForm() {
   }
 
   return (
-    <main className="bg-brand-softGreen py-16">
+    <main className="py-16">
       <div className="max-w-screen-xl mx-auto px-8">
         <div className="text-start mb-12">
-          <h2 className="text-4xl font-bold text-black mb-4">
-            Comunícate con Nosotros
-          </h2>
-          <p className="text-lg text-brand-gray">
-            Estamos aquí para ayudarte con tus necesidades tecnológicas.
+          <h2 className="text-4xl font-bold text-black mb-4">Contáctanos</h2>
+          <p className="text-lg">
+            Cuéntanos sobre tu proyecto, idea o consulta. Estamos listos para
+            ayudarte y responderte lo antes posible. Completa el formulario y
+            nos pondremos en contacto contigo en un plazo máximo de 24 horas
+            hábiles.
           </p>
         </div>
-        <div className="max-w-screen-lg mx-auto bg-white rounded-lg shadow p-8">
+        <div className="max-w-screen-lg mx-auto rounded-lg p-8">
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
@@ -123,7 +124,11 @@ export default function CommentForm() {
                   <FormItem>
                     <FormLabel>RUC</FormLabel>
                     <FormControl>
-                      <Input placeholder="RUC" {...field} />
+                      <Input
+                        className="input-contact"
+                        placeholder="RUC"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -136,7 +141,11 @@ export default function CommentForm() {
                   <FormItem>
                     <FormLabel>Razón Social</FormLabel>
                     <FormControl>
-                      <Input placeholder="Razón Social" {...field} />
+                      <Input
+                        className="input-contact"
+                        placeholder="Razón Social"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -149,7 +158,11 @@ export default function CommentForm() {
                   <FormItem>
                     <FormLabel>Dirección</FormLabel>
                     <FormControl>
-                      <Input placeholder="Dirección" {...field} />
+                      <Input
+                        className="input-contact"
+                        placeholder="Dirección"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -162,7 +175,11 @@ export default function CommentForm() {
                   <FormItem>
                     <FormLabel>Ciudad / País</FormLabel>
                     <FormControl>
-                      <Input placeholder="Ciudad / País" {...field} />
+                      <Input
+                        className="input-contact"
+                        placeholder="Ciudad / País"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -175,7 +192,11 @@ export default function CommentForm() {
                   <FormItem>
                     <FormLabel>Persona de Contacto</FormLabel>
                     <FormControl>
-                      <Input placeholder="Persona de Contacto" {...field} />
+                      <Input
+                        className="input-contact"
+                        placeholder="Persona de Contacto"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -188,7 +209,11 @@ export default function CommentForm() {
                   <FormItem>
                     <FormLabel>Teléfono</FormLabel>
                     <FormControl>
-                      <Input placeholder="Teléfono" {...field} />
+                      <Input
+                        className="input-contact"
+                        placeholder="Teléfono"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -201,7 +226,12 @@ export default function CommentForm() {
                   <FormItem className="col-span-1 md:col-span-2">
                     <FormLabel>Correo</FormLabel>
                     <FormControl>
-                      <Input placeholder="Correo" type="email" {...field} />
+                      <Input
+                        className="input-contact"
+                        placeholder="Correo"
+                        type="email"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -214,15 +244,20 @@ export default function CommentForm() {
                   <FormItem className="col-span-1 md:col-span-2">
                     <FormLabel>Mensaje</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Mensaje" {...field} />
+                      <Textarea
+                        className="input-contact !h-32"
+                        placeholder="Mensaje"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
               <Button
+                variant="secondary"
                 type="submit"
-                className="w-full md:w-fit px-16 mx-auto cols-span-1 md:col-span-2 bg-brand-green hover:bg-brand-darkGreen text-white font-semibold rounded-full transition-colors duration-300"
+                className="w-full md:w-fit px-16 mx-auto cols-span-1 md:col-span-2 h-10 rounded-xl transition-colors duration-300"
               >
                 Enviar
               </Button>
