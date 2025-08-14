@@ -15,13 +15,14 @@ export const Services = () => {
       <Carousel
         plugins={[autoplay.current, wheel.current]}
         className="w-full h-full"
-        onMouseEnter={autoplay.current.stop}
-        onMouseLeave={autoplay.current.reset}
-        opts={{ loop: true }}
+        onMouseEnter={() => autoplay.current.stop()}
+        onMouseLeave={() => autoplay.current.play()}
+        orientation="vertical"
+        opts={{ loop: false }}
       >
-        <CarouselContent className="w-full h-full">
+        <CarouselContent className="w-full h-[800px]">
           {services.map((service, index) => (
-            <CarouselItem key={index} className="w-full h-full">
+            <CarouselItem key={index} className="w-full h-fit">
               <ItemInformation service={service} index={index} />
             </CarouselItem>
           ))}

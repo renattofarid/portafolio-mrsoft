@@ -3,15 +3,26 @@ import { ProjectMarkdown } from "@/lib/projects";
 import Image from "next/image";
 
 export default function ItemProject({
+  projectSelected,
   project,
   onClick,
 }: {
+  projectSelected: boolean;
   project: ProjectMarkdown;
   onClick: (project: ProjectMarkdown) => void;
 }) {
   return (
     <button
-      className="flex flex-col cursor-pointer relative px-8 py-3 rounded-xl overflow-hidden z-10 w-fit md:w-full text-nowrap"
+      className={`flex flex-col cursor-pointer relative px-8 py-3 rounded-xl overflow-hidden z-10 w-fit md:w-full text-nowrap ${
+        projectSelected ? "ring-4" : ""
+      }`}
+      style={
+        projectSelected
+          ? ({
+              "--tw-ring-color": project.frontmatter.color,
+            } as React.CSSProperties)
+          : undefined
+      }
       onClick={() => onClick(project)}
     >
       <div className="absolute w-full h-full backdrop-blur-lg bg-transparent top-0 left-0"></div>

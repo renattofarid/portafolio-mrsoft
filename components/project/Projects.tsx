@@ -42,7 +42,11 @@ export default function Projects({ projects }: Props) {
               key={index}
               className="w-fit md:w-full h-full basis-auto md:basis-1/6"
             >
-              <ItemProject onClick={setProjectSelected} project={project} />
+              <ItemProject
+                projectSelected={projectSelected?.slug === project.slug}
+                onClick={setProjectSelected}
+                project={project}
+              />
             </CarouselItem>
           ))}
         </CarouselContent>
@@ -60,7 +64,9 @@ export default function Projects({ projects }: Props) {
               />
             </div>
             <div className="bg-white/75 dark:bg-black/60 rounded-2xl h-fit p-4 backdrop-blur-md">
-              <p className="text-base md:text-lg font-bold">Del diseño al desarrollo</p>
+              <p className="text-base md:text-lg font-bold">
+                Del diseño al desarrollo
+              </p>
               <p className="text-xs md:text-sm">
                 Creamos un diseño visual completo, pensado en la experiencia del
                 usuario, la estructura y la identidad de tu marca.
