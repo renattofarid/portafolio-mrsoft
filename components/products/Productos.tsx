@@ -7,6 +7,7 @@ import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import { ProductMarkdown } from "@/lib/products";
 import { ItemProductInformation } from "./ItemProductInformation";
 import ItemProduct from "./ItemProduct";
+import gsap from "gsap";
 
 interface Props {
   products: ProductMarkdown[];
@@ -19,11 +20,24 @@ export default function Products({ products }: Props) {
   const [productselected, setproductselected] =
     useState<ProductMarkdown | null>(null);
 
+  const infoRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (!productselected && products.length > 0) {
       setproductselected(products[0]);
     }
-  }, []);
+  }, [products, productselected]);
+
+  // Animación al cambiar de producto
+  useEffect(() => {
+    if (infoRef.current) {
+      gsap.fromTo(
+        infoRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+      );
+    }
+  }, [productselected]);
 
   return (
     <div>
@@ -50,9 +64,14 @@ export default function Products({ products }: Props) {
         </CarouselContent>
       </Carousel>
 
-      {productselected && (
-        <ItemProductInformation product={productselected.frontmatter} />
-      )}
+      {/* Contenedor con altura mínima para que el layout no salte */}
+      <div className="min-h-[720px] mt-6">
+        {productselected && (
+          <div ref={infoRef}>
+            <ItemProductInformation product={productselected.frontmatter} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
