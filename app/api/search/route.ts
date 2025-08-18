@@ -24,8 +24,11 @@ export async function GET(req: Request) {
     getProducts(),
     getProjects(),
   ]);
-
-  const mapForFuse = (arr: any[]): Item[] =>
+  
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const mapForFuse = <T extends { slug: string; frontmatter: any }>(
+    arr: T[]
+  ): Item[] =>
     arr.map((x) => ({
       slug: x.slug,
       frontmatter: {

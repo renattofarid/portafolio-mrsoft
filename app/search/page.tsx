@@ -6,14 +6,14 @@ import { Services } from "@/components/services/Services";
 import Projects from "@/components/project/Projects";
 import Products from "@/components/products/Productos";
 
-export default async function SearchPage({
-  searchParams,
-}: {
-  searchParams: { query?: string };
-}) {
-  const projects = await getProjects();
-  const q = searchParams.query ?? "";
-  const [products] = await Promise.all([getProducts(), getProjects()]);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default async function SearchPage({ searchParams }: any) {
+  const q = typeof searchParams?.query === "string" ? searchParams.query : "";
+
+  const [products, projects] = await Promise.all([
+    getProducts(),
+    getProjects(),
+  ]);
 
   return (
     <div className="min-h-screen bg-background transition-colors duration-300">
