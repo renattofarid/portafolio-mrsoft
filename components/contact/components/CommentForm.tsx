@@ -103,7 +103,7 @@ export default function CommentForm() {
     <main className="py-16">
       <div className="max-w-screen-xl mx-auto px-8">
         <div className="text-start mb-12">
-          <h2 className="text-4xl font-bold text-black mb-4">Contáctanos</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-4">Contáctanos</h2>
           <p className="text-lg">
             Cuéntanos sobre tu proyecto, idea o consulta. Estamos listos para
             ayudarte y responderte lo antes posible. Completa el formulario y

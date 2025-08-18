@@ -27,9 +27,7 @@ export default async function Page() {
 
         <Suspense
           fallback={
-            <div className="relative mt-10 h-fit overflow-hidden bg-black text-white p-4 py-8 md:p-8 rounded-4xl flex flex-col md:min-h-[720px]">
-              
-            </div>
+            <div className="relative mt-10 h-fit overflow-hidden bg-black text-white p-4 py-8 md:p-8 rounded-4xl flex flex-col md:min-h-[720px]"></div>
           }
         >
           <Services />

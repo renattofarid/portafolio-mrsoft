@@ -2,6 +2,7 @@ import Footer from "@/components/home/footer";
 import Header from "@/components/home/header";
 import Products from "@/components/products/Productos";
 import { getProducts } from "@/lib/products";
+import { Suspense } from "react";
 
 export default async function Page() {
   const products = await getProducts();
@@ -21,7 +22,13 @@ export default async function Page() {
           </p>
         </div>
 
-        <Products products={products} />
+        <Suspense
+          fallback={
+            <div className="relative mt-10 h-fit overflow-hidden bg-black text-white p-4 py-8 md:p-8 rounded-4xl flex flex-col md:min-h-[720px]"></div>
+          }
+        >
+          <Products products={products} />
+        </Suspense>
       </main>
 
       {/* Footer */}
