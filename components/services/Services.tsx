@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import { services } from "@/lib/services";
@@ -15,12 +16,26 @@ export const Services = () => {
     ? services.findIndex((s) => s.slug === currentService.slug)
     : 0;
 
+  // estado para detectar si es móvil
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <div className="relative w-full h-full md:min-h-[750px]">
       <Carousel
-        plugins={[WheelGesturesPlugin({ forceWheelAxis: "y" })]}
+        plugins={[
+          WheelGesturesPlugin({
+            forceWheelAxis: isMobile ? "x" : "y", // horizontal solo en móviles
+          }),
+        ]}
         className="w-full h-full rounded-4xl my-6 overflow-hidden"
-        orientation="vertical"
+        orientation={isMobile ? "horizontal" : "vertical"}
         opts={{ loop: false, startIndex }}
       >
         <CarouselContent className="w-full h-[850px] md:h-[800px]">

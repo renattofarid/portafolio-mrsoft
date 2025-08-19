@@ -8,19 +8,31 @@ import { ProductMarkdown } from "@/lib/products";
 import { ItemProductInformation } from "./ItemProductInformation";
 import ItemProduct from "./ItemProduct";
 import gsap from "gsap";
+import { useSearchParams } from "next/navigation";
 
 interface Props {
   products: ProductMarkdown[];
 }
 
 export default function Products({ products }: Props) {
+  const searchParams = useSearchParams();
+  const product = searchParams.get("p");
+
+  const currentProduct = products.find((p) => p.slug === product);
+
   const autoplay = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
   const wheel = useRef(WheelGesturesPlugin({ forceWheelAxis: "y" }));
 
   const [productselected, setproductselected] =
-    useState<ProductMarkdown | null>(null);
+    useState<ProductMarkdown | null>(currentProduct ?? null);
 
   const infoRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (currentProduct) {
+      setproductselected(currentProduct);
+    }
+  });
 
   useEffect(() => {
     if (!productselected && products.length > 0) {
