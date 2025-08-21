@@ -32,10 +32,17 @@ export default function SearchWithBlur() {
 
       setOpen(false);
 
+      console.log("Search result:", data);
+
       if (data?.ok && data?.type && data?.slug) {
-        if (data.type === "product") router.push(`/productos?p=${data.slug}`);
+        if (data.type === "product")
+          router.push(`/productos?p=${data.slug.toString().split("/").pop()}`);
+        else if (data.type === "project")
+          router.push(`/servicios/${data.slug.toString().split("/").pop()}`);
         else if (data.type === "service")
-          router.push(`/servicios/${data.slug}`);
+          router.push(`/servicios?s=${data.slug}`);
+        else if (data.type === "redirect")
+          router.push(data.slug); // 👈 nuevo caso
         else router.push(`/${data.slug}`);
       } else {
         router.push(`/search?query=${encodeURIComponent(q)}`);
