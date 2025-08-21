@@ -34,7 +34,9 @@ export default function SearchWithBlur() {
 
       if (data?.ok && data?.type && data?.slug) {
         if (data.type === "product") router.push(`/productos?p=${data.slug}`);
-        else router.push(`/servicios/${data.slug}`);
+        else if (data.type === "service")
+          router.push(`/servicios/${data.slug}`);
+        else router.push(`/${data.slug}`);
       } else {
         router.push(`/search?query=${encodeURIComponent(q)}`);
       }

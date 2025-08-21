@@ -1,8 +1,10 @@
 // app/api/search/route.ts
 import { NextResponse } from "next/server";
-import Fuse, { IFuseOptions } from "fuse.js";
+import Fuse from "fuse.js";
+import type { IFuseOptions } from "fuse.js";
 import { getProducts } from "@/lib/products";
 import { getProjects } from "@/lib/projects";
+import { services as staticServices } from "@/lib/services";
 
 type Item = {
   slug: string;
@@ -15,17 +17,40 @@ const normalize = (s?: string) =>
     .normalize("NFD")
     .replace(/\p{Diacritic}/gu, "");
 
+// 🔑 alias de búsqueda
+const PRODUCT_KEYWORDS = ["productos", "producto", "product", "products"];
+const SERVICE_KEYWORDS = ["servicios", "servicio", "service", "services"];
+
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const q = (searchParams.get("q") || "").trim();
   if (!q) return NextResponse.json({ ok: false }, { status: 400 });
 
+  const qn = normalize(q);
+
+  // 👇 si coincide con alguno de los alias → redirige a /productos
+  if (PRODUCT_KEYWORDS.includes(qn)) {
+    return NextResponse.json({
+      ok: true,
+      type: "redirect",
+      slug: "productos", // o directamente "/productos"
+    });
+  }
+
+  // 👇 si coincide con alguno de los alias → redirige a /servicios
+  if (SERVICE_KEYWORDS.includes(qn)) {
+    return NextResponse.json({
+      ok: true,
+      type: "redirect",
+      slug: "servicios", // o directamente "/servicios"
+    });
+  }
+
   const [products, services] = await Promise.all([
     getProducts(),
     getProjects(),
   ]);
-  
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   const mapForFuse = <T extends { slug: string; frontmatter: any }>(
     arr: T[]
   ): Item[] =>
@@ -64,8 +89,6 @@ export async function GET(req: Request) {
       },
     ],
   };
-
-  const qn = normalize(q);
 
   const productFuse = new Fuse(mapForFuse(products), fuseOptions);
   const serviceFuse = new Fuse(mapForFuse(services), fuseOptions);
