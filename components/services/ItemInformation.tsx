@@ -8,9 +8,8 @@ export const ItemInformation = ({
   index: number;
 }) => {
   const { image, title, description, benefits } = service;
-
   return (
-    <div className="relative h-full overflow-hidden bg-black text-white p-4 py-8 md:p-8 rounded-4xl flex flex-col">
+    <div className="relative mt-10 h-fit overflow-hidden bg-black text-white p-4 py-8 md:p-8 rounded-4xl flex flex-col min-h-[660px] md:min-h-[720px]">
       <img
         src={image}
         alt="service"
@@ -46,6 +45,10 @@ export const ItemInformation = ({
             </div>
           ))}
         </div>
+
+        {/* <Button className="mt-6 px-10 bg-secondary text-white hover:bg-secondary/80">
+          Conocer más
+        </Button> */}
       </div>
     </div>
   );
