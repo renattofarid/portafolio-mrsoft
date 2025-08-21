@@ -32,7 +32,7 @@ export async function GET(req: Request) {
   if (PRODUCT_KEYWORDS.includes(qn)) {
     return NextResponse.json({
       ok: true,
-      type: "service",
+      type: "redirect",
       slug: "/productos",
     });
   }
