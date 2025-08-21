@@ -1,22 +1,46 @@
 import { Product } from "@/lib/product.interface";
 import { Button } from "../ui/button";
 import Iphone15Pro from "../magicui/iphone-15-pro";
+import Link from "next/link";
 
 export const ItemProductInformation = ({ product }: { product: Product }) => {
-  const { image, title, description, benefits, index, color } = product;
+  const {
+    link,
+    image,
+    title,
+    description,
+    benefits,
+    index,
+    color,
+    foreground = "#000000",
+  } = product;
   return (
     <div className="relative mt-10 h-full overflow-hidden bg-black text-white p-4 py-8 md:p-8 rounded-4xl flex flex-col md:min-h-[720px]">
-      <div className="flex gap-2 items-center z-10">
-        <div
-          className="w-1 h-3 md:h-6 rounded-xl"
-          style={{
-            backgroundColor: color,
-          }}
-        />
-        <h1 className="text-xl md:text-5xl font-semibold">{index}.</h1>
-      </div>
+      <div className="flex flex-col md:flex-row items-start justify-between gap-4 md:gap-8 md:w-2/3">
+        <div>
+          <div className="flex gap-2 items-center z-10">
+            <div
+              className="w-1 h-3 md:h-6 rounded-xl"
+              style={{
+                backgroundColor: color,
+              }}
+            />
+            <h1 className="text-xl md:text-5xl font-semibold">{index}.</h1>
+          </div>
 
-      <h1 className="text-2xl md:text-6xl font-semibold z-10">{title}</h1>
+          <h1 className="text-2xl md:text-6xl font-semibold z-10">{title}</h1>
+        </div>
+
+        <Link href={link} target="_blank">
+          <Button
+            variant="ghost"
+            style={{ backgroundColor: color, color: foreground }}
+            size={"sm"}
+          >
+            Visitar Web
+          </Button>
+        </Link>
+      </div>
 
       <p className="w-full md:w-2/3 z-10 mt-4 text-sm md:text-normal">
         {description}
