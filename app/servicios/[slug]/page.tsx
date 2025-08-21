@@ -40,6 +40,9 @@ export default async function Page({
       <Header />
       <main className="max-w-7xl mx-auto px-4 py-10">
         <Hero
+          background={frontmatter.color}
+          foreground={frontmatter.foreground}
+          link={frontmatter.link}
           title={frontmatter.title}
           description={frontmatter.description}
           images={frontmatter.gallery}
