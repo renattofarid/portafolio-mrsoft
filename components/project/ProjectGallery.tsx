@@ -93,6 +93,15 @@ export function ProjectGallery({ data }: Props) {
         <CarouselPrevious className="absolute top-1/2 -translate-y-1/2 left-2 z-10" />
         <CarouselNext className="absolute top-1/2 -translate-y-1/2 right-2 z-10" />
       </Carousel>
+      <div>
+        <Link
+          href={`/servicios/${slug}`}
+          style={{ color: project.color }}
+          className="underline text-sm md:text-base font-medium italic mt-1 block text-center"
+        >
+          Descubre más del proyecto
+        </Link>
+      </div>
     </div>
   );
 }

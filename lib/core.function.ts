@@ -21,6 +21,7 @@ export const errorToast = (
 ) => {
   return toast.error(body, {
     description: description,
+    position: "bottom-center",
     action: {
       label: "Cerrar",
       onClick: () => toast.dismiss(),

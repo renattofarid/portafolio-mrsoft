@@ -9,12 +9,21 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel";
+import { Button } from "../ui/button";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export function Hero({
+  background,
+  foreground = "#000000",
+  link,
   title,
   description,
   images,
 }: {
+  background: string;
+  foreground: string;
+  link: string;
   title: string;
   description: string;
   images: string[];
@@ -24,7 +33,18 @@ export function Hero({
 
   return (
     <section className="w-full flex flex-col items-center justify-center gap-6">
-      <h1 className="text-4xl font-bold border-b pb-2 px-8 w-full">{title}</h1>
+      <div className="flex justify-between items-center w-full border-b">
+        <h1 className="text-4xl font-bold pb-2 px-8 w-full">{title}</h1>
+        <Link href={link} target="_blank">
+          <Button
+            variant="ghost"
+            style={{ backgroundColor: background, color: foreground }}
+            size={"sm"}
+          >
+            Visitar Web
+          </Button>
+        </Link>
+      </div>
       <div className="flex justify-end w-full">
         <p className="md:w-2/3 text-xs md:text-base text-end">{description}</p>
       </div>
