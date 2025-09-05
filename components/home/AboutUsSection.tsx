@@ -110,11 +110,11 @@ export default function AboutUsSection() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-6xl mx-auto px-4">
           {[
             {
-              end: 300,
+              end: 100,
               label: "Proyectos Completados",
             },
             {
-              end: 150,
+              end: 500,
               label: "Clientes Satisfechos",
             },
             {
