@@ -20,4 +20,8 @@ export const technologies: Record<string, TechnologyInfo> = {
     title: "Next.js",
     image: "/technologies/nextjs.svg",
   },
+  culqi: {
+    title: "Culqi",
+    image: "/technologies/culqi.svg",
+  },
 };
