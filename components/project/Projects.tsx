@@ -1,8 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi, // 👈 importante
+} from "../ui/carousel";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import { ProjectMarkdown } from "@/lib/projects";
 import ItemProject from "./ItemProject";
@@ -15,13 +19,12 @@ interface Props {
 }
 
 export default function Projects({ projects }: Props) {
-  const autoplay = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
   const wheel = useRef(WheelGesturesPlugin({ forceWheelAxis: "y" }));
-
   const [projectSelected, setProjectSelected] =
     useState<ProjectMarkdown | null>(null);
 
   const detailRef = useRef<HTMLDivElement>(null);
+  const [embla, setEmbla] = useState<CarouselApi | null>(null); // 👈 guardar api de Embla
 
   useEffect(() => {
     if (!projectSelected && projects.length > 0) {
@@ -29,30 +32,35 @@ export default function Projects({ projects }: Props) {
     }
   }, [projects, projectSelected]);
 
-  // Animación de aparición sin alterar altura
+  // Animación
   useEffect(() => {
     if (detailRef.current) {
       gsap.fromTo(
         detailRef.current,
         { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.5,
-          ease: "power2.out",
-        }
+        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
       );
     }
   }, [projectSelected]);
 
+  // 👇 cuando cambie el seleccionado, centrarlo en móvil
+  useEffect(() => {
+    if (!embla || !projectSelected) return;
+
+    const index = projects.findIndex((p) => p.slug === projectSelected.slug);
+
+    if (index !== -1 && window.innerWidth < 768) {
+      embla.scrollTo(index); // centra el slide
+    }
+  }, [projectSelected, embla, projects]);
+
   return (
     <div>
       <Carousel
-        plugins={[autoplay.current, wheel.current]}
+        plugins={[wheel.current]}
         className="w-full h-full my-4 bg-[#D7D7D7] dark:bg-[#2d2d2d] rounded-xl"
-        onMouseEnter={autoplay.current.stop}
-        onMouseLeave={autoplay.current.reset}
         opts={{ loop: true }}
+        setApi={setEmbla} // 👈 recibimos la instancia aquí
       >
         <CarouselContent className="w-full h-full p-2">
           {projects.map((project, index) => (
@@ -70,7 +78,6 @@ export default function Projects({ projects }: Props) {
         </CarouselContent>
       </Carousel>
 
-      {/* Contenedor de altura fija para que el layout no se mueva */}
       <div className="min-h-[500px]">
         {projectSelected && (
           <div ref={detailRef}>
