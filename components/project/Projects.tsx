@@ -43,13 +43,13 @@ export default function Projects({ projects }: Props) {
     }
   }, [projectSelected]);
 
-  // 👇 cuando cambie el seleccionado, centrarlo en móvil
+  // 👇 cuando cambie el seleccionado, centrarlo siempre
   useEffect(() => {
     if (!embla || !projectSelected) return;
 
     const index = projects.findIndex((p) => p.slug === projectSelected.slug);
 
-    if (index !== -1 && window.innerWidth < 768) {
+    if (index !== -1) {
       embla.scrollTo(index); // centra el slide
     }
   }, [projectSelected, embla, projects]);

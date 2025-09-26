@@ -25,7 +25,7 @@ export default function ItemProject({
       }
       onClick={() => onClick(project)}
     >
-      <div className="absolute w-full h-full backdrop-blur-lg bg-transparent top-0 left-0"></div>
+      <div className="absolute w-full h-full backdrop-blur-md bg-transparent top-0 left-0"></div>
       <Image
         className="object-cover -z-10"
         fill

@@ -11,7 +11,7 @@ export interface ProjectMarkdown {
   content: string;
 }
 
-export async function getProjects(): Promise<ProjectMarkdown[]> {
+export async function getProjects(category?: string): Promise<ProjectMarkdown[]> {
   const files = fs.readdirSync(CONTENT_DIR).filter((f) => f.endsWith(".mdx"));
 
   const projects = files.map((filename) => {
@@ -25,6 +25,11 @@ export async function getProjects(): Promise<ProjectMarkdown[]> {
       content,
     };
   });
+
+  // Filtrar por categoría si se especifica
+  if (category) {
+    return projects.filter(project => project.frontmatter.category === category);
+  }
 
   return projects;
 }
