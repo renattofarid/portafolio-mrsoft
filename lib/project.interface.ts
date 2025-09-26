@@ -9,4 +9,5 @@ export interface Project {
   technologies?: string[];
   color: string;
   figma: string;
+  category: "desarrollo" | "paginas" | "ecommerce";
 }

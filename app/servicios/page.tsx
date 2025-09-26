@@ -5,8 +5,23 @@ import { Services } from "@/components/services/Services";
 import { getProjects } from "@/lib/projects";
 import { Suspense } from "react";
 
-export default async function Page() {
-  const projects = await getProjects();
+interface PageProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export default async function Page({ searchParams }: PageProps) {
+  const resolvedSearchParams = await searchParams;
+  const service = resolvedSearchParams.s as string;
+
+  // Mapear slug de servicio a categoría de proyecto
+  const categoryMap: { [key: string]: string } = {
+    'desarrollo': 'desarrollo',
+    'paginas': 'paginas',
+    'ecommerce': 'ecommerce'
+  };
+
+  const category = service && categoryMap[service] ? categoryMap[service] : undefined;
+  const projects = await getProjects(category);
 
   return (
     <div className="min-h-screen bg-background transition-colors duration-300">
