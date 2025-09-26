@@ -6,11 +6,12 @@ import { getProjects } from "@/lib/projects";
 import { Suspense } from "react";
 
 interface PageProps {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 export default async function Page({ searchParams }: PageProps) {
-  const service = searchParams.s as string;
+  const resolvedSearchParams = await searchParams;
+  const service = resolvedSearchParams.s as string;
 
   // Mapear slug de servicio a categoría de proyecto
   const categoryMap: { [key: string]: string } = {
