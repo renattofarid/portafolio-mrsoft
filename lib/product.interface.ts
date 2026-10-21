@@ -4,6 +4,7 @@ export interface Product {
   title: string;
   description: string;
   image: string;
+  device?: "phone" | "desktop";
   benefits: Benefit[];
   color: string;
   foreground?: string;

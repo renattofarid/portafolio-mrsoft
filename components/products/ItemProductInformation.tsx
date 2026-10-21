@@ -1,12 +1,14 @@
 import { Product } from "@/lib/product.interface";
 import { Button } from "../ui/button";
 import Iphone15Pro from "../magicui/iphone-15-pro";
+import { Safari } from "../safari";
 import Link from "next/link";
 
 export const ItemProductInformation = ({ product }: { product: Product }) => {
   const {
     link,
     image,
+    device = "phone",
     title,
     description,
     benefits,
@@ -14,9 +16,13 @@ export const ItemProductInformation = ({ product }: { product: Product }) => {
     color,
     foreground = "#000000",
   } = product;
+  const isDesktop = device === "desktop";
+  const contentWidth = isDesktop ? "md:w-1/2" : "md:w-2/3";
   return (
     <div className="relative mt-10 h-full overflow-hidden bg-black text-white p-4 py-8 md:p-8 rounded-4xl flex flex-col md:min-h-[720px]">
-      <div className="flex flex-col md:flex-row items-start justify-between gap-4 md:gap-8 md:w-2/3">
+      <div
+        className={`flex flex-col md:flex-row items-start justify-between gap-4 md:gap-8 ${contentWidth}`}
+      >
         <div>
           <div className="flex gap-2 items-center z-10">
             <div
@@ -42,11 +48,13 @@ export const ItemProductInformation = ({ product }: { product: Product }) => {
         </Link>
       </div>
 
-      <p className="w-full md:w-2/3 z-10 mt-4 text-sm md:text-normal">
+      <p className={`w-full ${contentWidth} z-10 mt-4 text-sm md:text-normal`}>
         {description}
       </p>
 
-      <div className="w-full md:w-2/3 z-10 mt-4 px-0 md:px-8 flex-1 overflow-auto">
+      <div
+        className={`w-full ${contentWidth} z-10 mt-4 px-0 md:px-8 flex-1 overflow-auto`}
+      >
         <div className="flex gap-2 items-center">
           <div
             className="w-1 h-3  rounded-xl"
@@ -70,10 +78,18 @@ export const ItemProductInformation = ({ product }: { product: Product }) => {
           ))}
         </div>
       </div>
-      <Iphone15Pro
-        src={image}
-        className="block md:absolute top-0 right-0 w-2/3 mx-auto md:w-1/3 h-full object-cover object-center rounded-4xl mt-4 md:mt-0 z-0 pointer-events-none select-none py-4"
-      />
+      {isDesktop ? (
+        <Safari
+          url={link.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")}
+          imageSrc={image}
+          className="block md:absolute md:top-1/2 md:-translate-y-1/2 md:right-8 w-full md:w-[44%] h-auto mt-4 md:mt-0 z-0 pointer-events-none select-none"
+        />
+      ) : (
+        <Iphone15Pro
+          src={image}
+          className="block md:absolute top-0 right-0 w-2/3 mx-auto md:w-1/3 h-full object-cover object-center rounded-4xl mt-4 md:mt-0 z-0 pointer-events-none select-none py-4"
+        />
+      )}
     </div>
   );
 };
